@@ -5,8 +5,10 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iomanip>
+#include <limits>
 
-class contact
+class Contact
 {
     public:
         std::string name;
@@ -14,18 +16,18 @@ class contact
         std::string nickname;
         std::string phone_number;
         std::string darkest_secret;
-        contact();
-        ~contact();
+        Contact();
+        ~Contact();
 };
 
-class phonebook
+class PhoneBook
 {
     private:
-        std::vector<contact> contacts;
+        std::vector<Contact> contacts;
     public:
-        phonebook();
-        ~phonebook();
-        void add_contact(const contact& c);
+        PhoneBook();
+        ~PhoneBook();
+        void add_contact(const Contact& c);
         void display_contacts() const;
 };
 

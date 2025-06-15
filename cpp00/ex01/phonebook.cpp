@@ -1,53 +1,83 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/15 22:23:34 by moel-mes          #+#    #+#             */
+/*   Updated: 2025/06/15 22:33:16 by moel-mes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "phonebook.hpp"
 
 int main(){
-    phonebook pb;
+    PhoneBook pb;
     std::string command;
 
     std::cout << "Welcome to the Phonebook" << std::endl;
     while (command != "EXIT")
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-        std::getline(std::cin, command);
+        if (!std::getline(std::cin, command)) {
+            std::cout << "\nInput stream closed. Exiting." << std::endl;
+            break;
+        }
         if (command == "ADD")
         {
             std::string name, last_name, nickname, phone_number, darkest_secret;
             std::cout << "Enter the name: ";
-            std::getline(std::cin, name);
+            if (!std::getline(std::cin, name)) {
+                std::cout << "\nInput stream closed. Exiting." << std::endl;
+                break;
+            }
             if (name.empty())
             {
                 std::cout << "Name cannot be empty." << std::endl;
                 continue;
             }
             std::cout << "Enter the last name: ";
-            std::getline(std::cin, last_name);
+            if (!std::getline(std::cin, last_name)) {
+                std::cout << "\nInput stream closed. Exiting." << std::endl;
+                break;
+            }
             if (last_name.empty())
             {
                 std::cout << "Last name cannot be empty." << std::endl;
                 continue;
             }
             std::cout << "Enter the nickname: ";
-            std::getline(std::cin, nickname);
+            if (!std::getline(std::cin, nickname)) {
+                std::cout << "\nInput stream closed. Exiting." << std::endl;
+                break;
+            }
             if (nickname.empty())
             {
                 std::cout << "Nickname cannot be empty." << std::endl;
                 continue;
             }
             std::cout << "Enter the phone number: ";
-            std::getline(std::cin, phone_number);
+            if (!std::getline(std::cin, phone_number)) {
+                std::cout << "\nInput stream closed. Exiting." << std::endl;
+                break;
+            }
             if (phone_number.empty())
             {
                 std::cout << "Phone number cannot be empty." << std::endl;
                 continue;
             }
             std::cout << "Enter the darkest secret: ";
-            std::getline(std::cin, darkest_secret);
+            if (!std::getline(std::cin, darkest_secret)) {
+                std::cout << "\nInput stream closed. Exiting." << std::endl;
+                break;
+            }
             if (darkest_secret.empty())
             {
                 std::cout << "Darkest secret cannot be empty." << std::endl;
                 continue;
             }
-            contact c;
+            Contact c;
             c.name = name;
             c.last_name = last_name;
             c.nickname = nickname;
