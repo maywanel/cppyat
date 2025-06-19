@@ -1,7 +1,7 @@
-NAME = phonebook
+NAME = zombie
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = utils.cpp phonebook.cpp
+SRCS = Zombie.cpp main.cpp newZombie.cpp randomChump.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

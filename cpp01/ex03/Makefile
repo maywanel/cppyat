@@ -1,7 +1,7 @@
-NAME = phonebook
+NAME = violence
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = utils.cpp phonebook.cpp
+SRCS = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
