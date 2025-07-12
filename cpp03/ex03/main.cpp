@@ -42,7 +42,6 @@ int main() {
     std::cout << "\n=== Testing DiamondTrap Combat ===" << std::endl;
     DiamondTrap fighter("Fighter");
     
-    // Should have FragTrap's damage (30) and ScavTrap's energy (50)
     fighter.attack("Target");
     fighter.takeDamage(20);
     fighter.beRepaired(10);
@@ -76,10 +75,10 @@ int main() {
         DiamondTrap hybrid("Hybrid");
         
         std::cout << "\nAll performing attacks:" << std::endl;
-        basic.attack("Target");      // ClapTrap attack
-        guard.attack("Target");      // ScavTrap attack
-        berserker.attack("Target");  // ClapTrap attack (FragTrap doesn't override)
-        hybrid.attack("Target");     // ScavTrap attack (DiamondTrap uses ScavTrap's)
+        basic.attack("Target");
+        guard.attack("Target");
+        berserker.attack("Target");
+        hybrid.attack("Target");
         
         std::cout << "\nAll performing special abilities:" << std::endl;
         guard.guardGate();
