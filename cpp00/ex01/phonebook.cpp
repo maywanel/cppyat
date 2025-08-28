@@ -6,7 +6,7 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 22:23:34 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/06/15 22:33:16 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:20:54 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,19 @@ int main(){
                 std::cout << "\nInput stream closed. Exiting." << std::endl;
                 break;
             }
+            else {
+                bool is_valid = true;
+                for (size_t i = 0; i < phone_number.length(); ++i) {
+                    if (!isdigit(phone_number[i])) {
+                        is_valid = false;
+                        break;
+                    }
+                }
+                if (!is_valid) {
+                    std::cout << "Phone number must contain only digits." << std::endl;
+                    continue;
+                }
+            }
             if (phone_number.empty())
             {
                 std::cout << "Phone number cannot be empty." << std::endl;
@@ -78,11 +91,11 @@ int main(){
                 continue;
             }
             Contact c;
-            c.name = name;
-            c.last_name = last_name;
-            c.nickname = nickname;
-            c.phone_number = phone_number;
-            c.darkest_secret = darkest_secret;
+            c.set_name(name);
+            c.set_last_name(last_name);
+            c.set_nickname(nickname);
+            c.set_phone_number(phone_number);
+            c.set_darkest_secret(darkest_secret);
             pb.add_contact(c);
         }
         else if (command == "SEARCH")

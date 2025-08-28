@@ -6,7 +6,7 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 23:33:22 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/06/15 23:33:23 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/08/26 10:21:27 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void PhoneBook::display_contacts() const
     {
         const Contact& c = contacts[i];
         std::cout << std::setw(10) << i << "|"
-                  << format_field(c.name) << "|"
-                  << format_field(c.last_name) << "|"
-                  << format_field(c.nickname) << std::endl;
+                  << format_field(c.get_name()) << "|"
+                  << format_field(c.get_last_name()) << "|"
+                  << format_field(c.get_nickname()) << std::endl;
     }
 
     std::cout << "Enter the index of the entry to display: ";
@@ -79,8 +79,42 @@ void PhoneBook::display_contacts() const
         return;
     }
     const Contact& c = contacts[idx];
-    std::cout << "First Name: " << c.name << std::endl;
-    std::cout << "Last Name: " << c.last_name << std::endl;
-    std::cout << "Nickname: " << c.nickname << std::endl;
-    std::cout << "Phone Number: " << c.phone_number << std::endl;
+    std::cout << "First Name: " << c.get_name() << std::endl;
+    std::cout << "Last Name: " << c.get_last_name() << std::endl;
+    std::cout << "Nickname: " << c.get_nickname() << std::endl;
+    std::cout << "Phone Number: " << c.get_phone_number() << std::endl;
 }
+
+void Contact::set_name(const std::string& n) {
+    name = n;
+}
+void Contact::set_last_name(const std::string& ln) {
+    last_name = ln;
+}
+void Contact::set_nickname(const std::string& nn) {
+    nickname = nn;
+}
+void Contact::set_phone_number(const std::string& pn) {
+    phone_number = pn;
+}
+
+void Contact::set_darkest_secret(const std::string& ds) {
+    darkest_secret = ds;
+}
+
+std::string Contact::get_name() const {
+    return name;
+}
+std::string Contact::get_last_name() const {
+    return last_name;
+}
+std::string Contact::get_nickname() const {
+    return nickname;
+}
+std::string Contact::get_phone_number() const {
+    return phone_number;
+}
+std::string Contact::get_darkest_secret() const {
+    return darkest_secret;
+}
+
