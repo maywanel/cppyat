@@ -6,7 +6,7 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 23:33:22 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/08/26 10:21:27 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:59:39 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,11 @@ void PhoneBook::display_contacts() const
     int idx;
     std::cin >> idx;
     if (std::cin.fail() || idx < 0 || idx > 7) {
-        std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Invalid index.\n";
         return;
     }
     if (static_cast<size_t>(idx) >= contacts.size()) {
-        std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "empty data\n";
         return;
@@ -83,6 +81,7 @@ void PhoneBook::display_contacts() const
     std::cout << "Last Name: " << c.get_last_name() << std::endl;
     std::cout << "Nickname: " << c.get_nickname() << std::endl;
     std::cout << "Phone Number: " << c.get_phone_number() << std::endl;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void Contact::set_name(const std::string& n) {

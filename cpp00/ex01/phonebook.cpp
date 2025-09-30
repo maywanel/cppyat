@@ -6,7 +6,7 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 22:23:34 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/08/26 10:20:54 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:44:15 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int main(){
         }
         else if (command == "SEARCH")
             pb.display_contacts();
+        else if (command != "EXIT" && command != "")
+            std::cout << "invalid command." << std::endl;
     }
     return 0;
 }
