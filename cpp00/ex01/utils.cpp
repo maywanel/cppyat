@@ -6,11 +6,14 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 23:33:22 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/09/30 15:59:39 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/11/01 03:45:09 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+
+static size_t g_next_index = 0;
+static size_t g_count = 0;
 
 Contact::Contact()
 {
@@ -20,26 +23,17 @@ Contact::Contact()
     phone_number = "";
 }
 
-Contact::~Contact()
-{
-}
+Contact::~Contact() {}
 
-PhoneBook::PhoneBook()
-{
-    contacts.reserve(8);
-}
-PhoneBook::~PhoneBook()
-{
-    contacts.clear();
-}
+PhoneBook::PhoneBook() {}
+PhoneBook::~PhoneBook() {}
+
 void PhoneBook::add_contact(const Contact& c)
 {
-    static size_t next_index = 0;
-    if (contacts.size() < 8)
-        contacts.push_back(c);
-    else
-        contacts[0] = c;
-    next_index = (next_index + 1) % 8;
+    contacts[g_next_index] = c;
+    if (g_count < 8)
+        ++g_count;
+    g_next_index = (g_next_index + 1) % 8;
 }
 
 static std::string format_field(const std::string& str) {
@@ -54,7 +48,8 @@ void PhoneBook::display_contacts() const
               << std::setw(10) << "First Name" << "|"
               << std::setw(10) << "Last Name" << "|"
               << std::setw(10) << "Nickname" << std::endl;
-    for (size_t i = 0; i < contacts.size(); ++i)
+
+    for (size_t i = 0; i < g_count; ++i)
     {
         const Contact& c = contacts[i];
         std::cout << std::setw(10) << i << "|"
@@ -67,11 +62,12 @@ void PhoneBook::display_contacts() const
     int idx;
     std::cin >> idx;
     if (std::cin.fail() || idx < 0 || idx > 7) {
+        std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Invalid index.\n";
         return;
     }
-    if (static_cast<size_t>(idx) >= contacts.size()) {
+    if ((size_t)idx >= g_count) {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "empty data\n";
         return;

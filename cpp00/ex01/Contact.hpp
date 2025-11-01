@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moel-mes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 11:44:04 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/09/22 11:44:06 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/11/01 03:38:14 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 #include <iomanip>
 #include <limits>
 
