@@ -3,7 +3,7 @@
 int main() {
     std::cout << "=== Testing DiamondTrap Creation ===" << std::endl;
     DiamondTrap diamond("DT-001");
-    
+
     std::cout << "\n=== DiamondTrap Status ===" << std::endl;
     std::cout << diamond.getName() << " - HP: " << diamond.getHitPoints() 
               << ", EP: " << diamond.getEnergyPoints() 
