@@ -2,9 +2,9 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-    this->_hitPoints = 100;
-    this->_energyPoints = 50;
-    this->_attackDamage = 20;
+    _hitPoints = 100;
+    _energyPoints = 50;
+    _attackDamage = 20;
     std::cout << "Scavtrap Default constructor called\n";
 }
 
@@ -17,7 +17,7 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
-    std::cout << "ScavTrap " << _name << " is created by copy!" << std::endl;
+    std::cout << "ScavTrap " << _name << " is created by copy constructor !" << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
