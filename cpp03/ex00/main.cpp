@@ -20,11 +20,11 @@ int main() {
     for (int i = 0; i < 8; i++)
         clap1.attack("Target");
     std::cout << "\n=== Testing Actions with No Energy ===" << std::endl;
-    clap1.attack("Can't attack");
+    clap1.attack("enemy");
     clap1.beRepaired(10);
     std::cout << "\n=== Testing Death ===" << std::endl;
     clap2.takeDamage(15);
-    clap2.attack("Can't attack when dead");
+    clap2.attack("enemy");
     clap2.beRepaired(5);
     clap2.takeDamage(5);
     std::cout << "\n=== Testing Copy Constructor ===" << std::endl;
