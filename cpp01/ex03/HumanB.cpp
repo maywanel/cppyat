@@ -1,13 +1,12 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(const std::string& name) : name(name) {}
+HumanB::HumanB(const std::string& name) : name(name), weapon(NULL) {}
 
 void HumanB::attack() const {
-    if (weapon) {
+    if (weapon)
         std::cout << name << " attacks with their " << weapon->getType() << std::endl;
-    } else {
+    else
         std::cout << name << " is unarmed" << std::endl;
-    }
 }
 
 void HumanB::setWeapon(Weapon& weapon) {

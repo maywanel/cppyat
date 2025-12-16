@@ -1,4 +1,5 @@
 #include "Harl.hpp"
+#include <limits>
 
 int main() {
     Harl harl;
@@ -11,6 +12,8 @@ int main() {
             std::cout << "\nInput stream closed. Exiting." << std::endl;
             break;
         }
+	if (level == "")
+            continue;
         if (level == "EXIT") {
             std::cout << "Exiting the program." << std::endl;
             break;

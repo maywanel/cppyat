@@ -8,13 +8,13 @@ class Harl {
     public:
         Harl();
         ~Harl();
-        void complain(std::string level);
+        void complain(const std::string level);
 
     private:
-        void debug(void);
-        void info(void);
-        void warning(void);
-        void error(void);
+        void debug();
+        void info();
+        void warning();
+        void error();
         void (Harl::*actions[4])(void);
         std::string levels[4];
 };

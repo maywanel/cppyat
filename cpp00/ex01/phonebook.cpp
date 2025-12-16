@@ -6,11 +6,20 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 22:23:34 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/09/22 12:44:15 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/11/04 14:58:49 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
+
+static bool is_only_whitespace(const std::string& str) {
+    for (size_t i = 0; i < str.length(); ++i) {
+        if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\r') {
+            return false;
+        }
+    }
+    return true;
+}
 
 int main(){
     PhoneBook pb;
@@ -32,9 +41,9 @@ int main(){
                 std::cout << "\nInput stream closed. Exiting." << std::endl;
                 break;
             }
-            if (name.empty())
+            if (name.empty() || is_only_whitespace(name))
             {
-                std::cout << "Name cannot be empty." << std::endl;
+                std::cout << "Name cannot be empty or contain only whitespaces." << std::endl;
                 continue;
             }
             std::cout << "Enter the last name: ";
@@ -42,9 +51,9 @@ int main(){
                 std::cout << "\nInput stream closed. Exiting." << std::endl;
                 break;
             }
-            if (last_name.empty())
+            if (last_name.empty() || is_only_whitespace(last_name))
             {
-                std::cout << "Last name cannot be empty." << std::endl;
+                std::cout << "Last name cannot be empty or contain only whitespaces." << std::endl;
                 continue;
             }
             std::cout << "Enter the nickname: ";
@@ -52,9 +61,9 @@ int main(){
                 std::cout << "\nInput stream closed. Exiting." << std::endl;
                 break;
             }
-            if (nickname.empty())
+            if (nickname.empty() || is_only_whitespace(nickname))
             {
-                std::cout << "Nickname cannot be empty." << std::endl;
+                std::cout << "Nickname cannot be empty or contain only whitespaces." << std::endl;
                 continue;
             }
             std::cout << "Enter the phone number: ";
@@ -85,9 +94,9 @@ int main(){
                 std::cout << "\nInput stream closed. Exiting." << std::endl;
                 break;
             }
-            if (darkest_secret.empty())
+            if (darkest_secret.empty() || is_only_whitespace(darkest_secret))
             {
-                std::cout << "Darkest secret cannot be empty." << std::endl;
+                std::cout << "Darkest secret cannot be empty or contain only whitespaces." << std::endl;
                 continue;
             }
             Contact c;

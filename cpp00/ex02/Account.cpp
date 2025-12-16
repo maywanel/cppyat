@@ -6,7 +6,7 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 01:19:57 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/06/17 01:22:04 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:03:18 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void Account::makeDeposit(int deposit) {
     _nbDeposits++;
     _totalAmount += deposit;
     _totalNbDeposits++;
-    std::cout << "index:" << _accountIndex << ";p_amount:" << (_amount - deposit) << ";deposit:" << deposit << ";amount:" << _amount << std::endl;
+    std::cout << "index:" << _accountIndex << ";p_amount:" << (_amount - deposit) << ";deposit:" << deposit << ";amount:" << _amount << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
 bool Account::makeWithdrawal(int withdrawal) {
@@ -50,7 +50,7 @@ bool Account::makeWithdrawal(int withdrawal) {
     _nbWithdrawals++;
     _totalAmount -= withdrawal;
     _totalNbWithdrawals++;
-    std::cout << "index:" << _accountIndex << ";p_amount:" << (_amount + withdrawal) << ";withdrawal:" << withdrawal << ";amount:" << _amount << std::endl;
+    std::cout << "index:" << _accountIndex << ";p_amount:" << (_amount + withdrawal) << ";withdrawal:" << withdrawal << ";amount:" << _amount << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
     return true;
 }
 

@@ -15,16 +15,21 @@ int main(int ac, char **av) {
     std::string occurrence = av[2];
     std::string replacement = av[3];
     std::string output;
+    if (occurrence.empty() || replacement.empty()) {
+        std::cerr << "Error: occurrence or replacement must not be empty\n";
+        return 1;
+    }
     while (std::getline(file, line)) {
         size_t pos = 0;
         while ((pos = line.find(occurrence, pos)) != std::string::npos) {
-            line.replace(pos, occurrence.length(), replacement);
+            line.erase(pos, occurrence.length());
+            line.insert(pos, replacement);
             pos += replacement.length();
         }
-        output += line + "\n";
+        output += line + '\n';
     }
     file.close();
-
+    
     std::string outfileName = std::string(av[1]) + ".replace";
     std::ofstream outfile(outfileName.c_str());
     if (!outfile.is_open()) {

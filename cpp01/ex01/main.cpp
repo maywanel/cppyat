@@ -9,9 +9,8 @@ int main() {
         for (int i = 0; i < N; ++i)
             horde[i].announce();
         delete[] horde;
-    } else {
-        std::cout << "Failed to create zombie horde." << std::endl;
     }
-
+    else
+        std::cout << "Failed to create zombie horde." << std::endl;
     return 0;
 }

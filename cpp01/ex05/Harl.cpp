@@ -30,7 +30,7 @@ Harl::Harl() {
 
 Harl::~Harl() {}
 
-void Harl::complain(std::string level) {
+void Harl::complain(const std::string level) {
     for (int i = 0; i < 4; ++i) {
         if (levels[i] == level) {
             (this->*actions[i])();

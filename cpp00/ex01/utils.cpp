@@ -6,11 +6,11 @@
 /*   By: moel-mes <moel-mes@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 23:33:22 by moel-mes          #+#    #+#             */
-/*   Updated: 2025/11/01 03:45:09 by moel-mes         ###   ########.fr       */
+/*   Updated: 2025/11/04 14:55:29 by moel-mes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 static size_t g_next_index = 0;
 static size_t g_count = 0;
@@ -77,6 +77,7 @@ void PhoneBook::display_contacts() const
     std::cout << "Last Name: " << c.get_last_name() << std::endl;
     std::cout << "Nickname: " << c.get_nickname() << std::endl;
     std::cout << "Phone Number: " << c.get_phone_number() << std::endl;
+    std::cout << "Darkest Secret: " << c.get_darkest_secret() << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
