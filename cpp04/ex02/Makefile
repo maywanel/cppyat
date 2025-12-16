@@ -1,22 +1,26 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
+SRCDIR = .
+OBJDIR = obj
+
 NAME = Brain_a
 
-SRCS = Animal.cpp Brain.cpp main.cpp
+SRCS = utils.cpp Brain.cpp main.cpp
 
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(SRCS:/%.cpp=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
 	rm -f $(NAME)

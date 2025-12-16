@@ -1,50 +1,55 @@
 #include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
-// Animal_A class implementation
-Animal_A::Animal_A() : type("Animal_A") {
-    std::cout << "Animal_A constructor called" << std::endl;
+// Animal class implementation
+Animal::Animal() : type("Animal") {
+    std::cout << "Animal constructor called" << std::endl;
 }
 
-Animal_A::Animal_A(const Animal_A& other) : type(other.type) {
-    std::cout << "Animal_A copy constructor called" << std::endl;
+Animal::Animal(const Animal& other) : type(other.type) {
+    std::cout << "Animal copy constructor called" << std::endl;
 }
 
-Animal_A::~Animal_A() {
-    std::cout << "Animal_A destructor called" << std::endl;
+Animal::~Animal() {
+    std::cout << "Animal destructor called" << std::endl;
 }
 
-Animal_A& Animal_A::operator=(const Animal_A& other) {
+Animal& Animal::operator=(const Animal& other) {
     if (this != &other) {
         type = other.type;
-        std::cout << "Animal_A assignment operator called" << std::endl;
+        std::cout << "Animal assignment operator called" << std::endl;
     }
     return *this;
 }
 
-std::string Animal_A::getType() const {
+void Animal::makeSound() const {
+    std::cout << "Animal sound" << std::endl;
+}
+
+std::string Animal::getType() const {
     return type;
 }
 
 // Dog class implementation
-Dog::Dog() : brain(new Brain()) {
+Dog::Dog() {
     type = "Dog";
     std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other) : Animal_A(other), brain(new Brain(*other.brain)) {
+Dog::Dog(const Dog& other) : Animal(other) {
     std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog::~Dog() {
-    delete brain;
     std::cout << "Dog destructor called" << std::endl;  
 }
 
 Dog& Dog::operator=(const Dog& other) {
     if (this != &other) {
-        Animal_A::operator=(other);
-        delete brain;
-        brain = new Brain(*other.brain);
+        Animal::operator=(other);
         std::cout << "Dog assignment operator called" << std::endl;
     }
     return *this;
@@ -54,30 +59,23 @@ void Dog::makeSound() const {
     std::cout << "Woof!" << std::endl;
 }
 
-Brain* Dog::getBrain() const {
-    return brain;
-}
-
 // Cat class implementation
-Cat::Cat() : brain(new Brain()) {
+Cat::Cat() {
     type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal_A(other), brain(new Brain(*other.brain)) {
+Cat::Cat(const Cat& other) : Animal(other) {
     std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat::~Cat() {
-    delete brain;
     std::cout << "Cat destructor called" << std::endl;  
 }
 
 Cat& Cat::operator=(const Cat& other) {
     if (this != &other) {
-        Animal_A::operator=(other);
-        delete brain;
-        brain = new Brain(*other.brain);
+        Animal::operator=(other);
         std::cout << "Cat assignment operator called" << std::endl;
     }
     return *this;
@@ -87,9 +85,6 @@ void Cat::makeSound() const {
     std::cout << "Meow!" << std::endl;
 }
 
-Brain* Cat::getBrain() const {
-    return brain;
-}
 // WrongAnimal class implementation
 WrongAnimal::WrongAnimal() : type("WrongAnimal") {
     std::cout << "WrongAnimal constructor called" << std::endl;
@@ -112,4 +107,31 @@ void WrongAnimal::makeSound() const {
 }
 std::string WrongAnimal::getType() const {
     return type;
+}
+
+// WrongCat class implementation
+WrongCat::WrongCat() {
+    type = "WrongCat";
+    std::cout << "WrongCat constructor called" << std::endl;
+}
+
+WrongCat::WrongCat(const WrongCat& other) : WrongAnimal(other) {
+    std::cout << "WrongCat copy constructor called" << std::endl;
+    *this = other;
+}
+
+WrongCat& WrongCat::operator=(const WrongCat& other) {
+    if (this != &other) {
+        WrongAnimal::operator=(other);
+        std::cout << "WrongCat assignment operator called" << std::endl;
+    }
+    return *this;
+}
+
+void WrongCat::makeSound() const {
+    std::cout << "Wrong Meow!" << std::endl;
+}
+
+WrongCat::~WrongCat() {
+    std::cout << "WrongCat destructor called" << std::endl;  
 }

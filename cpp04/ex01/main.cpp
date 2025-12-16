@@ -1,4 +1,7 @@
 #include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "Brain.hpp"
 
 int main()
 {
@@ -16,12 +19,11 @@ int main()
     delete meta;
     delete j;
     delete i;
-    
+
     std::cout << "\n=== Array of Animals test ===" << std::endl;
     const int arraySize = 6;
     Animal* animals[arraySize];
     
-    // Fill half with Dogs, half with Cats
     for (int idx = 0; idx < arraySize; idx++) {
         if (idx < arraySize / 2) {
             animals[idx] = new Dog();
@@ -57,11 +59,10 @@ int main()
     std::cout << "Original Idea 0: " << originalDog.getBrain()->getIdea(0) << std::endl;
     std::cout << "Copied Idea 0: " << copiedDog.getBrain()->getIdea(0) << std::endl;
     
-    if (originalDog.getBrain()->getIdea(0) != copiedDog.getBrain()->getIdea(0)) {
+    if (originalDog.getBrain()->getIdea(0) != copiedDog.getBrain()->getIdea(0))
         std::cout << "✓ Deep copy successful!" << std::endl;
-    } else {
+    else 
         std::cout << "✗ Shallow copy detected!" << std::endl;
-    }
     
     return 0;
 }

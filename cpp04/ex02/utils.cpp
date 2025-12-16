@@ -1,19 +1,21 @@
 #include "Animal.hpp"
-
+#include "Dog.hpp"
+#include "Cat.hpp"
 // Animal class implementation
-Animal::Animal() : type("Animal") {
+A_Animal::A_Animal() : type("Animal") {
+
     std::cout << "Animal constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal& other) : type(other.type) {
+A_Animal::A_Animal(const A_Animal& other) : type(other.type) {
     std::cout << "Animal copy constructor called" << std::endl;
 }
 
-Animal::~Animal() {
+A_Animal::~A_Animal() {
     std::cout << "Animal destructor called" << std::endl;
 }
 
-Animal& Animal::operator=(const Animal& other) {
+A_Animal& A_Animal::operator=(const A_Animal& other) {
     if (this != &other) {
         type = other.type;
         std::cout << "Animal assignment operator called" << std::endl;
@@ -21,11 +23,7 @@ Animal& Animal::operator=(const Animal& other) {
     return *this;
 }
 
-void Animal::makeSound() const {
-    std::cout << "Animal sound" << std::endl;
-}
-
-std::string Animal::getType() const {
+std::string A_Animal::getType() const {
     return type;
 }
 
@@ -35,7 +33,7 @@ Dog::Dog() : brain(new Brain()) {
     std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other) : Animal(other), brain(new Brain(*other.brain)) {
+Dog::Dog(const Dog& other) : A_Animal(other), brain(new Brain(*other.brain)) {
     std::cout << "Dog copy constructor called" << std::endl;
 }
 
@@ -46,7 +44,7 @@ Dog::~Dog() {
 
 Dog& Dog::operator=(const Dog& other) {
     if (this != &other) {
-        Animal::operator=(other);
+        A_Animal::operator=(other);
         delete brain;
         brain = new Brain(*other.brain);
         std::cout << "Dog assignment operator called" << std::endl;
@@ -59,7 +57,7 @@ void Dog::makeSound() const {
 }
 
 Brain* Dog::getBrain() const {
-    return brain;
+    return this->brain;
 }
 
 // Cat class implementation
@@ -68,7 +66,7 @@ Cat::Cat() : brain(new Brain()) {
     std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other), brain(new Brain(*other.brain)) {
+Cat::Cat(const Cat& other) : A_Animal(other), brain(new Brain(*other.brain)) {
     std::cout << "Cat copy constructor called" << std::endl;
 }
 
@@ -79,7 +77,7 @@ Cat::~Cat() {
 
 Cat& Cat::operator=(const Cat& other) {
     if (this != &other) {
-        Animal::operator=(other);
+        A_Animal::operator=(other);
         delete brain;
         brain = new Brain(*other.brain);
         std::cout << "Cat assignment operator called" << std::endl;
@@ -92,30 +90,6 @@ void Cat::makeSound() const {
 }
 
 Brain* Cat::getBrain() const {
-    return brain;
+    return this->brain;
 }
 
-// WrongAnimal class implementation
-
-WrongAnimal::WrongAnimal() : type("WrongAnimal") {
-    std::cout << "WrongAnimal constructor called" << std::endl;
-}
-WrongAnimal::WrongAnimal(const WrongAnimal& other) : type(other.type) {
-    std::cout << "WrongAnimal copy constructor called" << std::endl;
-}   
-WrongAnimal::~WrongAnimal() {
-    std::cout << "WrongAnimal destructor called" << std::endl;
-}
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other) {
-    if (this != &other) {
-        type = other.type;
-        std::cout << "WrongAnimal assignment operator called" << std::endl;
-    }
-    return *this;
-}
-void WrongAnimal::makeSound() const {
-    std::cout << "WrongAnimal sound" << std::endl;
-}
-std::string WrongAnimal::getType() const {
-    return type;
-}

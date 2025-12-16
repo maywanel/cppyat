@@ -1,11 +1,14 @@
 #include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+
 
 int main()
 {
     std::cout << "=== Basic functionality test ===" << std::endl;
-    // const Animal_A* meta = new Animal_A();
-    const Animal_A* j = new Dog();
-    const Animal_A* i = new Cat();
+    // const A_Animal* meta = new A_Animal();
+    const A_Animal* j = new Dog();
+    const A_Animal* i = new Cat();
     
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
@@ -19,7 +22,7 @@ int main()
     
     std::cout << "\n=== Array of Animals test ===" << std::endl;
     const int arraySize = 6;
-    Animal_A* animals[arraySize];
+    A_Animal* animals[arraySize];
     
     // Fill half with Dogs, half with Cats
     for (int idx = 0; idx < arraySize; idx++) {
