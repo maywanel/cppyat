@@ -18,6 +18,4 @@ class AMateria
         virtual void use(ICharacter& target);
 };
 
-
-
 #endif

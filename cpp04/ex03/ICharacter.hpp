@@ -2,8 +2,6 @@
 #define ICHARACTER_HPP
 
 #include <string>
-#include <iostream>
-
 #include "Materia.hpp"
 
 class ICharacter

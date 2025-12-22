@@ -19,5 +19,11 @@ int main()
     meta->makeSound();
     wrongMeta->makeSound();
     wrongCat->makeSound();
+
+    delete meta;
+    delete dog;
+    delete cat;
+    delete wrongMeta;
+    delete wrongCat;
     return 0;
 }

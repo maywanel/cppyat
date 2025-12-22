@@ -2,7 +2,6 @@
 #include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
-#include <iostream>
 
 AMateria::AMateria(std::string const & type) : _type(type) {}
 

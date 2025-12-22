@@ -1,5 +1,4 @@
 #include "MateriaSource.hpp"
-#include <iostream>
 
 MateriaSource::MateriaSource() {
     for (int i = 0; i < 4; ++i)
@@ -23,11 +22,18 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
 
 MateriaSource::~MateriaSource() {
     for (int i = 0; i < 4; ++i)
-        delete _templates[i];
+        if (_templates[i])
+            delete _templates[i];
 }
 
 void MateriaSource::learnMateria(AMateria* m) {
     if (!m) return;
+    for (int i = 0; i < 4; ++i) {
+        if (_templates[i] == m) {
+            std::cout << "MateriaSource already knows " << m->getType() << std::endl;
+            return;
+        }
+    }
     for (int i = 0; i < 4; ++i) {
         if (_templates[i] == 0) {
             _templates[i] = m;
@@ -35,6 +41,7 @@ void MateriaSource::learnMateria(AMateria* m) {
         }
     }
     std::cout << "MateriaSource is full, cannot learn " << m->getType() << std::endl;
+    delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
