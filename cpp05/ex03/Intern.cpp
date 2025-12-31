@@ -30,12 +30,12 @@ Intern& Intern::operator=(const Intern& toCopy) {
 
 AForm* Intern::makeForm(std::string formName, std::string target) {
     int i = 0;
-    std::string formNames[3] = {
+    static const std::string formNames[3] = {
         "shrubbery creation",
         "robotomy request",
         "presidential pardon"
     };
-    AForm* (*formCreators[3])(std::string) = {
+    static AForm* (*formCreators[3])(std::string) = {
         &Intern::createShrubberyCreationForm,
         &Intern::createRobotomyRequestForm,
         &Intern::createPresidentialPardonForm
