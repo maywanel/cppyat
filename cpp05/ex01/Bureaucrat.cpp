@@ -52,3 +52,8 @@ void Bureaucrat::signForm(Form &form) const {
         std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
     }
 }
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
+    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    return os;
+}

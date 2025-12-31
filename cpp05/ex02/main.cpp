@@ -15,18 +15,18 @@ int main() {
         PresidentialPardonForm pardon("Zaphod");
 
         std::cout << "\n=== Testing Shrubbery Form ===" << std::endl;
-        std::cout << "Form name: " << shrubbery.getName() << std::endl;
+        std::cout << shrubbery << std::endl;
         alice.signForm(shrubbery);
         alice.executeForm(shrubbery);
 
         std::cout << "\n=== Testing Robotomy Form ===" << std::endl;
-        std::cout << "Form name: " << robotomy.getName() << std::endl;
+        std::cout  << robotomy << std::endl;
         bob.signForm(robotomy);
         bob.executeForm(robotomy);
         bob.executeForm(robotomy);
 
         std::cout << "\n=== Testing Presidential Pardon Form ===" << std::endl;
-        std::cout << "Form name: " << pardon.getName() << std::endl;
+        std::cout  << pardon << std::endl;
         bob.signForm(pardon);
         bob.executeForm(pardon);
 

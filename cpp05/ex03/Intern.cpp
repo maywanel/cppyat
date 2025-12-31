@@ -3,6 +3,18 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
+AForm* Intern::createShrubberyCreationForm(std::string target) {
+    return new ShrubberyCreationForm(target);
+}
+
+AForm* Intern::createRobotomyRequestForm(std::string target) {
+    return new RobotomyRequestForm(target);
+}
+
+AForm*  Intern::createPresidentialPardonForm(std::string target) {
+    return new PresidentialPardonForm(target);
+}
+
 Intern::Intern() {}
 
 Intern::~Intern() {}
@@ -23,20 +35,19 @@ AForm* Intern::makeForm(std::string formName, std::string target) {
         "robotomy request",
         "presidential pardon"
     };
-
+    AForm* (*formCreators[3])(std::string) = {
+        &Intern::createShrubberyCreationForm,
+        &Intern::createRobotomyRequestForm,
+        &Intern::createPresidentialPardonForm
+    };
     while (i < 3 && formName != formNames[i]) i++;
-    std::cout << "Intern creates " << formName << std::endl;
-    switch (i) {
-        case 0:
-        return new ShrubberyCreationForm(target);
-        case 1:
-        return new RobotomyRequestForm(target);
-        case 2:
-        return new PresidentialPardonForm(target);
-        default:
-            throw UnknownFormException();
-            return NULL;
+    if (i < 3) {
+        std::cout << "Intern creates " << formName << std::endl;
+        return formCreators[i](target);
     }
+    throw UnknownFormException();
+    return NULL;
+
 }
 
 const char* Intern::UnknownFormException::what() const throw() {
