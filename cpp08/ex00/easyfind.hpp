@@ -1,0 +1,19 @@
+#pragma once
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <list>
+#include <exception>
+
+class NotFoundException : public std::exception {
+    public:
+        virtual const char* what() const throw() {
+            return "Value not found in container";
+        }
+};
+
+template <typename T>
+typename T::iterator easyfind(T& container, int value);
+
+#include "easyfind.tpp"
