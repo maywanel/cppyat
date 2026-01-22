@@ -26,6 +26,14 @@ class Span {
         ~Span();
 
         void addNumber(int number);
+
+        template <typename T>
+        void addNumber(T begin, T end) {
+            if (std::distance(begin, end) > static_cast<long>(maxSize - numbers.size()))
+                throw std::out_of_range("Cannot add range: not enough space in Span");
+            numbers.insert(numbers.end(), begin, end);
+        }
+
         unsigned int shortestSpan() const;
         unsigned int longestSpan() const;
 };
