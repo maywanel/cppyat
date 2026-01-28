@@ -132,7 +132,7 @@ Each exercise produces an executable that can be run directly. Some exercises re
 **Megaphone (cpp00/ex00):**
 ```bash
 ./megaphone hello world
-# Output: HELLOWORLD
+# Output: HELLOWORLD (arguments are concatenated without spaces)
 ```
 
 **PhoneBook (cpp00/ex01):**
@@ -249,18 +249,27 @@ cppyat/
 - **Coding Style**: Follows 42 School norm
 - **Memory Safety**: No memory leaks (verified with valgrind)
 - **Error Handling**: Proper exception handling where appropriate
-- **Code Organization**: Separate header (.hpp) and implementation (.cpp) files
+- **Code Organization**: Separate header (.hpp) and implementation (.cpp) files (note: template code is typically kept in headers)
 
 ## Building All Modules
 
-To compile all exercises in a module:
+To compile all exercises in a specific module (example for cpp00):
 
 ```bash
-# Navigate to each exercise and compile
+# Navigate to each exercise in cpp00 and compile
 for dir in cpp00/ex*/; do
-    cd "$dir"
-    make
-    cd ../..
+    (cd "$dir" && make)
+done
+```
+
+To compile all exercises in all modules:
+
+```bash
+# Compile all exercises across all modules
+for module in cpp*/; do
+    for ex in "$module"ex*/; do
+        (cd "$ex" && make)
+    done
 done
 ```
 
