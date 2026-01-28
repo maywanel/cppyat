@@ -15,12 +15,15 @@ int main(int argc, char **argv) {
         case 0:
             std::cout << "[ DEBUG ]" << std::endl;
             harl.complain("DEBUG");
+            // Fall through
         case 1:
             std::cout << "[ INFO ]" << std::endl;
             harl.complain("INFO");
+            // Fall through
         case 2:
             std::cout << "[ WARNING ]" << std::endl;
             harl.complain("WARNING");
+            // Fall through
         case 3:
             std::cout << "[ ERROR ]" << std::endl;
             harl.complain("ERROR");
