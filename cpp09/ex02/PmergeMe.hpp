@@ -25,4 +25,17 @@ class PmergeMe {
         ~PmergeMe();
 
         void run(int ac, char** av);
+        template <typename T>
+        void printContainer(const T& container) {
+            typename T::const_iterator it;
+            int i = 0;
+            for (it = container.begin(); it != container.end(); ++it) {
+                if (i++ >= 5 && container.size() > 10) { 
+                    std::cout << "[...]";
+                    break;
+                }
+                std::cout << *it << " ";
+            }
+            std::cout << std::endl;
+        }
 };

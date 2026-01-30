@@ -4,10 +4,8 @@
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe& other) {
-    if (this != &other) {
-        _vector = other._vector;
-        _deque = other._deque;
-    }
+    _vector = other._vector;
+    _deque = other._deque;
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
@@ -19,20 +17,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 }
 
 PmergeMe::~PmergeMe() {}
-
-template <typename T>
-void printContainer(const T& container) {
-    typename T::const_iterator it;
-    int i = 0;
-    for (it = container.begin(); it != container.end(); ++it) {
-        if (i++ >= 5 && container.size() > 10) { 
-             std::cout << "[...]";
-             break;
-        }
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-}
 
 void PmergeMe::run(int ac, char** av) {
     for (int i = 1; i < ac; i++) {
@@ -89,7 +73,6 @@ std::vector<int> PmergeMe::_mergeVector(std::vector<int>& arr) {
         largerElements.push_back(pairs[i].first);
     std::vector<int> sortedLarger = _mergeVector(largerElements);
     std::vector<int> mainChain;
-    mainChain.reserve(arr.size() + (hasStraggler ? 1 : 0));
     mainChain = sortedLarger;
     std::vector<int> pending;
     std::vector<std::pair<int, int> > pairsCopy = pairs;
@@ -104,22 +87,12 @@ std::vector<int> PmergeMe::_mergeVector(std::vector<int>& arr) {
         }
     }
     mainChain.insert(mainChain.begin(), pending[0]);
-    int jacob[] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845};
-    size_t pendingSize = pending.size();
-    size_t k = 2;
-    while (1) {
-        size_t endGroup = jacob[k];
-        if (endGroup > pendingSize) endGroup = pendingSize;
-        size_t startGroup = jacob[k-1];
-        if (startGroup >= pendingSize) break;
-        for (size_t i = endGroup; i > startGroup; --i) {
-             int valToInsert = pending[i-1];
-             int largerPair = sortedLarger[i-1];
-             std::vector<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
-             std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
-             mainChain.insert(pos, valToInsert);
-        }
-        k++;
+    for (size_t i = 1; i < pending.size(); ++i) {
+        int valToInsert = pending[i];
+        int largerPair = sortedLarger[i];
+        std::vector<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
+        std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
+        mainChain.insert(pos, valToInsert);
     }
     if (hasStraggler) {
         std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), straggler);
@@ -163,22 +136,12 @@ std::deque<int> PmergeMe::_mergeDeque(std::deque<int>& arr) {
         }
     }
     mainChain.push_front(pending[0]);
-    int jacob[] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845};
-    size_t pendingSize = pending.size();
-    size_t k = 2;
-    while (1) {
-        size_t endGroup = jacob[k];
-        if (endGroup > pendingSize) endGroup = pendingSize;
-        size_t startGroup = jacob[k-1];
-        if (startGroup >= pendingSize) break;
-        for (size_t i = endGroup; i > startGroup; --i) {
-             int valToInsert = pending[i-1];
-             int largerPair = sortedLarger[i-1];
-             std::deque<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
-             std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
-             mainChain.insert(pos, valToInsert);
-        }
-        k++;
+    for (size_t i = 1; i < pending.size(); ++i) {
+            int valToInsert = pending[i];
+            int largerPair = sortedLarger[i];
+            std::deque<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
+            std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
+            mainChain.insert(pos, valToInsert);
     }
     if (hasStraggler) {
         std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), straggler);
