@@ -87,12 +87,22 @@ std::vector<int> PmergeMe::_mergeVector(std::vector<int>& arr) {
         }
     }
     mainChain.insert(mainChain.begin(), pending[0]);
-    for (size_t i = 1; i < pending.size(); ++i) {
-        int valToInsert = pending[i];
-        int largerPair = sortedLarger[i];
-        std::vector<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
-        std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
-        mainChain.insert(pos, valToInsert);
+    int jacob[] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845};
+    size_t pendingSize = pending.size();
+    size_t k = 2;
+    while (1) {
+        size_t endGroup = jacob[k];
+        if (endGroup > pendingSize) endGroup = pendingSize;
+        size_t startGroup = jacob[k-1];
+        if (startGroup >= pendingSize) break;
+        for (size_t i = endGroup; i > startGroup; --i) {
+             int valToInsert = pending[i-1];
+             int largerPair = sortedLarger[i-1];
+             std::vector<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
+             std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
+             mainChain.insert(pos, valToInsert);
+        }
+        k++;
     }
     if (hasStraggler) {
         std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), straggler);
@@ -136,12 +146,22 @@ std::deque<int> PmergeMe::_mergeDeque(std::deque<int>& arr) {
         }
     }
     mainChain.push_front(pending[0]);
-    for (size_t i = 1; i < pending.size(); ++i) {
-            int valToInsert = pending[i];
-            int largerPair = sortedLarger[i];
-            std::deque<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
-            std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
-            mainChain.insert(pos, valToInsert);
+    int jacob[] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845};
+    size_t pendingSize = pending.size();
+    size_t k = 2;
+    while (1) {
+        size_t endGroup = jacob[k];
+        if (endGroup > pendingSize) endGroup = pendingSize;
+        size_t startGroup = jacob[k-1];
+        if (startGroup >= pendingSize) break;
+        for (size_t i = endGroup; i > startGroup; --i) {
+             int valToInsert = pending[i-1];
+             int largerPair = sortedLarger[i-1];
+             std::deque<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
+             std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
+             mainChain.insert(pos, valToInsert);
+        }
+        k++;
     }
     if (hasStraggler) {
         std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), straggler);
