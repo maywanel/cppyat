@@ -1,4 +1,4 @@
-#include <RPN.hpp>
+#include "RPN.hpp"
 
 RPN::RPN() {}
 RPN::RPN(const RPN& other) : operands(other.operands) {}
@@ -34,14 +34,14 @@ void RPN::evaluate(const std::string& expression) {
                 throw std::runtime_error("Error: Insufficient operands.");
             double right = operands.top(); operands.pop();
             double left = operands.top(); operands.pop();
-            if (right > 9 || right < -9 || left > 9 || left < -9)
-                throw std::runtime_error("Error");
             double result = applyOperator(token, left, right);
             operands.push(result);
         } else {
             char* end;
             double value = std::strtod(token.c_str(), &end);
             if (*end != '\0')
+                throw std::runtime_error("Error");
+            if (value >= 10 || value <= -10) 
                 throw std::runtime_error("Error");
             operands.push(value);
         }

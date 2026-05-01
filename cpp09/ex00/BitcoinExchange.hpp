@@ -22,4 +22,5 @@ class BitcoinExchange {
         void loadData(const std::string& filename);
         double getExchangeRate(const std::string& date) const;
         void run(const std::string& filename);
+        bool isValidData(const std::string& data);
 };

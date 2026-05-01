@@ -1,4 +1,4 @@
-#include <RPN.hpp>
+#include "RPN.hpp"
 #include <iostream>
 
 int main(int argc, char* argv[]) {
@@ -6,7 +6,6 @@ int main(int argc, char* argv[]) {
         std::cerr << "Usage: " << argv[0] << " \"<RPN expression>\"" << std::endl;
         return 1;
     }
-
     RPN rpn;
     try {
         rpn.evaluate(argv[1]);
@@ -16,6 +15,5 @@ int main(int argc, char* argv[]) {
         std::cerr << e.what() << std::endl;
         return 1;
     }
-
     return 0;
 }

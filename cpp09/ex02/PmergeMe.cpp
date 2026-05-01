@@ -75,14 +75,13 @@ std::vector<int> PmergeMe::_mergeVector(std::vector<int>& arr) {
     std::vector<int> mainChain;
     mainChain = sortedLarger;
     std::vector<int> pending;
-    std::vector<std::pair<int, int> > pairsCopy = pairs;
     for (size_t i = 0; i < sortedLarger.size(); ++i) {
         int largeVal = sortedLarger[i];
-        for (size_t j = 0; j < pairsCopy.size(); ++j) {
-            if (pairsCopy[j].first == largeVal) {
-                 pending.push_back(pairsCopy[j].second);
-                 pairsCopy.erase(pairsCopy.begin() + j);
-                 break;
+        for (size_t j = 0; j < pairs.size(); ++j) {
+            if (pairs[j].first == largeVal) {
+                pending.push_back(pairs[j].second);
+                pairs.erase(pairs.begin() + j);
+                break;
             }
         }
     }
@@ -96,11 +95,11 @@ std::vector<int> PmergeMe::_mergeVector(std::vector<int>& arr) {
         size_t startGroup = jacob[k-1];
         if (startGroup >= pendingSize) break;
         for (size_t i = endGroup; i > startGroup; --i) {
-             int valToInsert = pending[i-1];
-             int largerPair = sortedLarger[i-1];
-             std::vector<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
-             std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
-             mainChain.insert(pos, valToInsert);
+            int valToInsert = pending[i-1];
+            int largerPair = sortedLarger[i-1];
+            std::vector<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
+            std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
+            mainChain.insert(pos, valToInsert);
         }
         k++;
     }
@@ -134,14 +133,13 @@ std::deque<int> PmergeMe::_mergeDeque(std::deque<int>& arr) {
     std::deque<int> mainChain;
     mainChain = sortedLarger;
     std::deque<int> pending;
-    std::deque<std::pair<int, int> > pairsCopy = pairs;
     for (size_t i = 0; i < sortedLarger.size(); ++i) {
         int largeVal = sortedLarger[i];
-        for (size_t j = 0; j < pairsCopy.size(); ++j) {
-            if (pairsCopy[j].first == largeVal) {
-                 pending.push_back(pairsCopy[j].second);
-                 pairsCopy.erase(pairsCopy.begin() + j);
-                 break;
+        for (size_t j = 0; j < pairs.size(); ++j) {
+            if (pairs[j].first == largeVal) {
+                pending.push_back(pairs[j].second);
+                pairs.erase(pairs.begin() + j);
+                break;
             }
         }
     }
@@ -155,11 +153,11 @@ std::deque<int> PmergeMe::_mergeDeque(std::deque<int>& arr) {
         size_t startGroup = jacob[k-1];
         if (startGroup >= pendingSize) break;
         for (size_t i = endGroup; i > startGroup; --i) {
-             int valToInsert = pending[i-1];
-             int largerPair = sortedLarger[i-1];
-             std::deque<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
-             std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
-             mainChain.insert(pos, valToInsert);
+            int valToInsert = pending[i-1];
+            int largerPair = sortedLarger[i-1];
+            std::deque<int>::iterator bound = std::lower_bound(mainChain.begin(), mainChain.end(), largerPair);
+            std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), bound, valToInsert);
+            mainChain.insert(pos, valToInsert);
         }
         k++;
     }
