@@ -48,7 +48,7 @@ bool BitcoinExchange::isValidDate(const std::string& date) const {
 bool BitcoinExchange::isValidData(const std::string& data) {
     if (data.empty()) return false;
     for (size_t i = 0; i < data.length(); ++i)
-        if (!std::isdigit(data[i]) && data[i] != '.' && data[i] != '-') return false;
+        if (!std::isdigit(data[i]) && data[i] != '.' && data[i] != '-' && data[i] != ',') return false;
     return true;
 }
 
